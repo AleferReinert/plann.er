@@ -28,10 +28,11 @@ O plann.er é uma aplicação de **gestão de viagens**.
 
 ## Tecnologias Utilizadas
 
+- **Vite:** Um servidor de desenvolvimento rápido e ferramenta de construção.
 - **React:** Uma biblioteca JavaScript para construir interfaces de usuário.
 - **TypeScript:** Um superconjunto do JavaScript que adiciona tipagem estática opcional.
-- **Vite:** Um servidor de desenvolvimento rápido e ferramenta de construção.
 - **Tailwind CSS:** Um framework CSS baseado em utilitários.
+- **Sonner:** Uma biblioteca para criar notificações no React.
 
 ## URL do Projeto
 

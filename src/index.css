@@ -4,4 +4,8 @@
 
 * {
 	min-width: 0;
+
+	&:focus {
+		@apply outline-none;
+	}
 }

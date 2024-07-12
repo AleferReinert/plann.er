@@ -33,6 +33,7 @@ O plann.er é uma aplicação de **gestão de viagens**.
 - **TypeScript:** Um superconjunto do JavaScript que adiciona tipagem estática opcional.
 - **Tailwind CSS:** Um framework CSS baseado em utilitários.
 - **Sonner:** Uma biblioteca para criar notificações no React.
+- **Tailwind Variants:** Uma biblioteca para criar variantes de classes utilitárias com Tailwind CSS.
 
 ## URL do Projeto
 

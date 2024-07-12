@@ -1,24 +1,32 @@
 import { ComponentProps } from 'react'
+import { tv, VariantProps } from 'tailwind-variants'
 
-interface ButtonProps extends ComponentProps<'button'> {
-	variant?: 'primary' | 'secondary'
-	full?: boolean
-	size?: 'sm' | 'md'
-}
+const buttonVariants = tv({
+	base: 'justify-center px-5 flex gap-2 rounded-lg items-center text-base font-medium text-nowrap transition',
+	variants: {
+		variant: {
+			primary: 'bg-lime-300 text-lime-950',
+			secondary: 'bg-zinc-800 text-zinc-200'
+		},
+		size: {
+			sm: 'h-9',
+			md: 'h-10'
+		},
+		disabled: {
+			true: 'opacity-60'
+		}
+	},
+	defaultVariants: {
+		variant: 'primary',
+		size: 'sm'
+	}
+})
 
-export function Button({ variant = 'primary', full, size = 'sm', ...props }: ButtonProps) {
+interface ButtonProps extends ComponentProps<'button'>, VariantProps<typeof buttonVariants> {}
+
+export function Button({ variant, size, disabled, ...props }: ButtonProps) {
 	return (
-		<button
-			{...props}
-			className={`
-				${variant === 'primary' ? 'bg-lime-300 text-lime-950 ' : 'bg-zinc-800 text-zinc-200 '} 
-				${full ? 'w-full ' : ''} 
-				${props.disabled ? 'opacity-60 ' : ''} 
-				${size === 'sm' ? 'h-9 ' : 'h-10 '}
-				${props.className || ''} 
-				justify-center px-5 flex gap-2 rounded-lg items-center text-base font-medium text-nowrap
-			`}
-		>
+		<button {...props} className={buttonVariants({ variant, size, disabled }) + ' ' + props.className}>
 			{props.children}
 		</button>
 	)

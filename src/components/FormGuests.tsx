@@ -49,7 +49,7 @@ export function FormGuests({ guestEmails, setGuestEmails }: FormGuestsProps) {
 			</div>
 			<div className='h-[1px] bg-zinc-800 mb-5'></div>
 			<form onSubmit={e => updateGuestEmails(e)}>
-				<InputGroupWrapper theme='dark' size='sm'>
+				<InputGroupWrapper theme='dark' size='md'>
 					<Input
 						placeholder='Digite o e-mail do convidado'
 						icon={<AtSign size={20} />}

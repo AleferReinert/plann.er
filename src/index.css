@@ -6,6 +6,37 @@
 	min-width: 0;
 
 	&:focus {
-		@apply outline-none;
+		@apply outline-0;
 	}
 }
+
+/* datepicker */
+.rdp {
+	--rdp-accent-color: theme(colors.lime.300);
+	--rdp-background-color: theme(colors.zinc.800);
+	--rdp-selected-color: theme(colors.zinc.900);
+	--rdp-cell-size: theme(size.10);
+	--rdp-caption-font-size: theme(size.4);
+	--rdp-outline: transparent;
+	--rdp-outline-selected: 0;
+	display: inline-block;
+	margin: 0;
+}
+
+.rdp-button {
+	transition: all 0.075s linear;
+	font-size: theme(size[3.5]);
+}
+
+.rdp-day_selected.rdp-button:focus-visible:not([disabled]) {
+	border: 0;
+	background: red;
+}
+
+.rdp-day_today:not(.rdp-day_outside) {
+	font-weight: theme(fontWeight.semibold);
+}
+/* 
+.rdp-day_range_start {
+	border-radius: 8px 0 0 8px;
+} */

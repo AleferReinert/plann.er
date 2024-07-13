@@ -14,8 +14,8 @@ export function CreateTripPage() {
 	return (
 		<>
 			<Container className={guestsModal || confirmTripCreationModal ? 'blur' : ''}>
-				<div className='flex flex-col gap-10 my-10 justify-center text-center items-center sm:h-screen bg-squares bg-no-repeat bg-center'>
-					<header className=''>
+				<div className='flex flex-col gap-10 my-10 justify-center items-center sm:h-screen bg-squares bg-no-repeat bg-center'>
+					<header className='text-center'>
 						<Logo />
 						<p className='text-lg'>Convide seus amigos e planeje sua próxima viagem!</p>
 					</header>
@@ -29,7 +29,7 @@ export function CreateTripPage() {
 						/>
 					</div>
 
-					<p className='text-sm text-zinc-500 [&_a]:text-zinc-300 [&_a]:underline max-w-[480px]'>
+					<p className='text-center text-sm text-zinc-500 [&_a]:text-zinc-300 [&_a]:underline max-w-[480px]'>
 						Ao planejar sua viagem pela plann.er você automaticamente concorda com nossos{' '}
 						<a href=''>termos de uso</a> e <a href=''>políticas de privacidade</a>.
 					</p>

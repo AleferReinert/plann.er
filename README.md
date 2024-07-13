@@ -34,6 +34,7 @@ O plann.er é uma aplicação de **gestão de viagens**.
 - **Tailwind CSS:** Um framework CSS baseado em utilitários.
 - **Sonner:** Uma biblioteca para criar notificações no React.
 - **Tailwind Variants:** Uma biblioteca para criar variantes de classes utilitárias com Tailwind CSS.
+- **React Daypicker:** Um componente React para seleção de datas.
 
 ## URL do Projeto
 

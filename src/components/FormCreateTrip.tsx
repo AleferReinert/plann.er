@@ -11,106 +11,104 @@ import { Modal } from './Modal'
 setDefaultOptions({ locale: ptBR })
 
 interface FormCreateTripProps {
-	enableGuestsInputOption?: boolean
-	setGuestsModal?: React.Dispatch<React.SetStateAction<boolean>>
-	guestEmails?: string[]
+	date: DateRange | undefined
+	setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>
+	destination: string | undefined
+	setDestination: React.Dispatch<React.SetStateAction<string>>
+	enableParticipantsInputOption?: boolean
+	setParticipantsModal?: React.Dispatch<React.SetStateAction<boolean>>
+	participantEmails?: string[]
 	setConfirmTripCreationModal?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export function FormCreateTrip({
-	enableGuestsInputOption = false,
-	setGuestsModal,
-	guestEmails,
+	date,
+	setDate,
+	destination,
+	setDestination,
+	enableParticipantsInputOption = false,
+	setParticipantsModal,
+	participantEmails,
 	setConfirmTripCreationModal
 }: FormCreateTripProps) {
-	const [address, setAddress] = useState('')
-	const [date, setDate] = useState<DateRange | undefined>()
 	const [showFullForm, setShowFullForm] = useState(false)
 	const [daypickerModal, setDaypickerModal] = useState(false)
 	const formatedDate = date?.from && date.to && format(date.from, "dd'/'MM' a '") + format(date.to, "dd'/'MM")
+	const tomorrow = new Date(Date.now() + 86400000)
 
-	function updateAddress(e: React.ChangeEvent<HTMLInputElement>) {
-		setAddress(e.currentTarget.value)
-	}
-
-	// function updateDate(e: React.ChangeEvent<HTMLInputElement>) {
-	// 	setDate(e.currentTarget.value)
-	// }
-
-	async function changeData() {
+	function changeData() {
+		const destinationInput = document.getElementById('destination-input')
 		setShowFullForm(false)
-		setAddress('')
+		console.log(destinationInput)
+		setDestination('')
 		setDate(undefined)
-		setTimeout(() => {
-			const addressInput = document.getElementById('address-input')?.focus()
-			console.log(addressInput)
-		}, 50)
 	}
 
 	return (
 		<>
-			<form onSubmit={e => e.preventDefault()}>
-				<InputGroupWrapper size='lg'>
-					<Input
-						placeholder='Para onde você vai?'
-						icon={<MapPin size={20} />}
-						labelStyles='flex-1'
-						onChange={e => updateAddress(e)}
-						value={address}
-						disabled={showFullForm}
-						id='address-input'
-						required
-					/>
-					<Input
-						placeholder='Quando?'
-						icon={<Calendar size={20} />}
-						inputStyles='md:max-w-36'
-						value={formatedDate}
-						disabled={showFullForm}
-						required
-						onClick={() => setDaypickerModal(true)}
-						onFocus={() => setDaypickerModal(true)}
-					/>
-					<div className='w-px h-6 bg-zinc-800 hidden md:block'></div>
-					{(showFullForm || !enableGuestsInputOption) && (
-						<Button variant='secondary' onClick={changeData}>
-							Alterar local/data
-							<Settings2 size={20} />
-						</Button>
-					)}
-
-					{!showFullForm && enableGuestsInputOption && (
-						<Button onClick={() => setShowFullForm(true)} disabled={!address || !date}>
-							Continuar
-							<ArrowRight size={20} />
-						</Button>
-					)}
-				</InputGroupWrapper>
-
-				{/* Aparece somente na home */}
-				{showFullForm && guestEmails && setGuestsModal && setConfirmTripCreationModal && (
-					<InputGroupWrapper size='lg' className='mt-4'>
-						<Input
-							placeholder={guestEmails.length === 0 ? 'Quem estará na viagem?' : ''}
-							value={
-								guestEmails.length === 1
-									? '1 pessoa convidada'
-									: guestEmails.length > 1
-									? `${guestEmails.length} pessoas convidadas`
-									: ''
-							}
-							icon={<UserRoundPlus size={20} />}
-							labelStyles='flex-1'
-							inputStyles='cursor-pointer'
-							onClick={() => setGuestsModal(true)}
-						/>
-						<Button disabled={guestEmails.length === 0} onClick={() => setConfirmTripCreationModal(true)}>
-							Confirmar viagem
-							<ArrowRight size={20} />
-						</Button>
-					</InputGroupWrapper>
+			<InputGroupWrapper size='lg'>
+				<Input
+					placeholder='Para onde você vai?'
+					icon={<MapPin size={20} />}
+					labelStyles='flex-1'
+					onChange={e => setDestination(e.target.value)}
+					defaultValue={destination}
+					disabled={showFullForm}
+					id='destination-input'
+					required
+				/>
+				<Input
+					placeholder='Quando?'
+					icon={<Calendar size={20} />}
+					inputStyles='md:max-w-36'
+					defaultValue={formatedDate}
+					disabled={showFullForm}
+					onClick={() => setDaypickerModal(true)}
+					onFocus={() => setDaypickerModal(true)}
+				/>
+				<div className='w-px h-6 bg-zinc-800 hidden md:block'></div>
+				{(showFullForm || !enableParticipantsInputOption) && (
+					<Button variant='secondary' onClick={changeData} type='button'>
+						Alterar local/data
+						<Settings2 size={20} />
+					</Button>
 				)}
-			</form>
+
+				{!showFullForm && enableParticipantsInputOption && (
+					<Button onClick={() => setShowFullForm(true)} disabled={!destination || !date}>
+						Continuar
+						<ArrowRight size={20} />
+					</Button>
+				)}
+			</InputGroupWrapper>
+
+			{/* Aparece somente na home */}
+			{showFullForm && participantEmails && setParticipantsModal && setConfirmTripCreationModal && (
+				<InputGroupWrapper size='lg' className='mt-4'>
+					<Input
+						placeholder={participantEmails.length === 0 ? 'Quem estará na viagem?' : ''}
+						defaultValue={
+							participantEmails.length === 1
+								? '1 pessoa convidada'
+								: participantEmails.length > 1
+								? `${participantEmails.length} pessoas convidadas`
+								: ''
+						}
+						icon={<UserRoundPlus size={20} />}
+						labelStyles='flex-1'
+						inputStyles='cursor-pointer'
+						onClick={() => setParticipantsModal(true)}
+					/>
+					<Button
+						disabled={participantEmails.length === 0}
+						onClick={() => setConfirmTripCreationModal(true)}
+						type='button'
+					>
+						Confirmar viagem
+						<ArrowRight size={20} />
+					</Button>
+				</InputGroupWrapper>
+			)}
 
 			{daypickerModal && (
 				<Modal
@@ -120,7 +118,7 @@ export function FormCreateTrip({
 					size='auto'
 				>
 					<div className='flex justify-center'>
-						<DayPicker mode='range' selected={date} onSelect={setDate} />
+						<DayPicker mode='range' selected={date} onSelect={setDate} disabled={{ before: tomorrow }} />
 					</div>
 				</Modal>
 			)}

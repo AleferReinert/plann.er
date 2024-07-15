@@ -8,13 +8,8 @@ interface FormCreateLinkProps {
 }
 
 export function FormCreateLink({ setCreateLinkModal }: FormCreateLinkProps) {
-	function formSubmit(e: React.FormEvent<HTMLFormElement>) {
-		e.preventDefault()
-		setCreateLinkModal(true)
-	}
-
 	return (
-		<form onSubmit={e => formSubmit(e)} className='space-y-3'>
+		<form onSubmit={() => setCreateLinkModal(true)} className='space-y-3'>
 			<InputGroupWrapper size='lg' theme='dark'>
 				<Input placeholder='Título do link' icon={<Tag size={20} />} labelStyles='flex-1' required />
 			</InputGroupWrapper>

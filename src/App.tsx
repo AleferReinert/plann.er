@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { DayScheduleProps } from './components/GeneralSchedule'
+import { DayScheduleProps } from './components/ActivitiesList'
 import { CreateTripPage } from './pages/criar-viagem'
 import { TripDetailsPage } from './pages/detalhes-da-viagem'
 
@@ -54,7 +54,7 @@ const links = [
 	}
 ]
 
-const guestList = [
+const participantList = [
 	{
 		name: 'Jessica White',
 		email: 'jessica.white44@yahoo.com',
@@ -104,7 +104,9 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/detalhes-da-viagem/:tripId',
-		element: <TripDetailsPage generalSchedule={generalSchedule} links={links} guestList={guestList} />
+		element: (
+			<TripDetailsPage generalSchedule={generalSchedule} links={links} participantList={participantList} />
+		)
 	}
 ])
 

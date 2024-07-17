@@ -6,6 +6,7 @@ import { Container } from '../../components/Container'
 import { FormAddParticipants } from '../../components/FormAddParticipants'
 import { FormConfirmTripCreation } from '../../components/FormConfirmTripCreation'
 import { FormCreateTrip } from '../../components/FormCreateTrip'
+import { Loading } from '../../components/Loading'
 import { Logo } from '../../components/Logo'
 import { Modal } from '../../components/Modal'
 import { api } from '../../lib/axios'
@@ -20,8 +21,7 @@ export function CreateTripPage() {
 	const [participantsModal, setParticipantsModal] = useState(false)
 	const [confirmTripCreationModal, setConfirmTripCreationModal] = useState(false)
 	const navigate = useNavigate()
-
-	// Adiciona novo e-mail de convidado ao pressionar enter, impedindo o envio total do formulário
+	const [loading, setLoading] = useState(false)
 
 	function addParticipantEmail(newEmail: string) {
 		if (participantEmails.includes(newEmail)) {
@@ -40,12 +40,6 @@ export function CreateTripPage() {
 	}
 
 	async function createTrip() {
-		// console.log(`destination: ${destination}`)
-		// console.log(date)
-		// console.log(`participantEmails: ${participantEmails}`)
-		// console.log(`ownerName: ${ownerName}`)
-		// console.log(`ownerEmail: ${ownerEmail}`)
-
 		if (!destination) {
 			toast.error('Destino inválido.')
 			return
@@ -71,6 +65,7 @@ export function CreateTripPage() {
 			return
 		}
 
+		setLoading(true)
 		const response = await api.post('/trips', {
 			destination,
 			starts_at: date.from,
@@ -152,6 +147,7 @@ export function CreateTripPage() {
 					/>
 				</Modal>
 			)}
+			<Loading show={loading} message='Aguarde...' />
 		</>
 	)
 }

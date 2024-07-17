@@ -30,14 +30,14 @@ export function ImportantLinks({ setCreateLinkModal }: ImportantLinksProps) {
 
 			<ul className='space-y-5'>
 				{links.map((link, index) => (
-					<li key={index} className='flex items-center justify-between gap-2'>
-						<div>
-							<h3 className='text-base font-medium text-zinc-100 mb-1'>{link.title}</h3>
-							<p className='text-xs text-zinc-400 max-w-60 truncate'>{link.url}</p>
-						</div>
-						<button>
+					<li key={index} className='space-y-2'>
+						<a href={link.url} target='_blank' className='w-full flex items-center justify-between'>
+							<div>
+								<h3 className='text-base font-medium text-zinc-100 mb-1'>{link.title}</h3>
+								<p className='text-xs text-zinc-400 max-w-60 truncate'>{link.url}</p>
+							</div>
 							<Link2 size={20} />
-						</button>
+						</a>
 					</li>
 				))}
 			</ul>

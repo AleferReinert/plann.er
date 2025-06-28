@@ -30,14 +30,16 @@ Aplicação para gerenciamento de viagens desenvolvido durante o NLW Journey da 
 
 ## Tecnologias Utilizadas
 
-- **Vite:** Um servidor de desenvolvimento rápido e ferramenta de construção.
+- **Husky:** Configuração de hooks Git para validações automáticas.
 - **React:** Uma biblioteca JavaScript para construir interfaces de usuário.
-- **TypeScript:** Um superconjunto do JavaScript que adiciona tipagem estática opcional.
-- **Tailwind CSS:** Um framework CSS baseado em utilitários.
-- **Sonner:** Uma biblioteca para criar notificações no React.
-- **Tailwind Variants:** Uma biblioteca para criar variantes de classes utilitárias com Tailwind CSS.
 - **React Daypicker:** Um componente React para seleção de datas.
+- **Sonner:** Uma biblioteca para criar notificações no React.
+- **Tailwind CSS:** Um framework CSS baseado em utilitários.
+- **Tailwind Variants:** Uma biblioteca para criar variantes de classes utilitárias com Tailwind CSS.
+- **TypeScript:** Um superconjunto do JavaScript que adiciona tipagem estática opcional.
+- **Vite:** Um servidor de desenvolvimento rápido e ferramenta de construção.
 
 ## Material complementar
 
 [Acesse aqui](https://efficient-sloth-d85.notion.site/NLW-16-Journey-013b69ad79894122824abd76bc0dab9b)
+

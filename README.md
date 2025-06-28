@@ -1,8 +1,8 @@
-# NLW Journey - plann.er (React)
+# plann.er
 
-O plann.er é uma aplicação de **gestão de viagens**.
+Aplicação para gerenciamento de viagens desenvolvido durante o NLW Journey da [Rocketseat](https://github.com/Rocketseat).
 
-## Desenvolvimento
+## Começando
 
 1. Clone o repositório:
 
@@ -10,21 +10,23 @@ O plann.er é uma aplicação de **gestão de viagens**.
    git clone https://github.com/AleferReinert/plann.er.git
    ```
 
-2. Instale as dependências:
+2. Entre no diretório do projeto:
+
+   ```
+   cd plann.er
+   ```
+
+3. Instale as dependências:
 
    ```
    yarn install
    ```
 
-3. Inicie o servidor de desenvolvimento:
+4. Inicie o servidor de desenvolvimento:
 
    ```
    yarn dev
    ```
-
-## Material complementar
-
-[Acesse aqui](https://efficient-sloth-d85.notion.site/NLW-16-Journey-013b69ad79894122824abd76bc0dab9b)
 
 ## Tecnologias Utilizadas
 
@@ -36,11 +38,6 @@ O plann.er é uma aplicação de **gestão de viagens**.
 - **Tailwind Variants:** Uma biblioteca para criar variantes de classes utilitárias com Tailwind CSS.
 - **React Daypicker:** Um componente React para seleção de datas.
 
-## URL do Projeto
+## Material complementar
 
-Explore o projeto no link: [plann.er](https://planner-nlw-journey.vercel.app).
-
-## Crédito
-
-Projeto desenvolvido durante o NLW da [Rocketseat](https://github.com/Rocketseat).
-
+[Acesse aqui](https://efficient-sloth-d85.notion.site/NLW-16-Journey-013b69ad79894122824abd76bc0dab9b)

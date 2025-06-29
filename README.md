@@ -22,7 +22,8 @@ Aplicação para gerenciamento de viagens desenvolvido durante o NLW Journey da 
    yarn install
    ```
 
-4. Inicie o servidor de desenvolvimento:
+4. Defina as variáveis de ambiente como em `.env.example`.
+5. Inicie o servidor de desenvolvimento:
 
    ```
    yarn dev

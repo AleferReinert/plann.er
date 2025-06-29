@@ -105,7 +105,7 @@ export function HomePage() {
 						/>
 					</div>
 
-					<p className='text-center text-sm text-zinc-500 [&_a]:text-zinc-300 [&_a]:underline max-w-[480px]'>
+					<p className='text-center text-sm text-zinc-500 [&_a]:text-zinc-300 [&_a]:underline max-w-[480px] [&_a]:transition [&>a:hover]:text-lime-300'>
 						Ao planejar sua viagem pela plann.er você automaticamente concorda com nossos <a href=''>termos de uso</a> e{' '}
 						<a href=''>políticas de privacidade</a>.
 					</p>

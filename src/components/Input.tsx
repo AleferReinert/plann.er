@@ -6,9 +6,9 @@ interface InputProps extends ComponentProps<'input'> {
 	inputStyles?: string
 }
 
-export function Input({ icon, labelStyles, inputStyles, ...props }: InputProps) {
+export function Input({ icon, labelStyles, inputStyles, className, ...props }: InputProps) {
 	return (
-		<label className={`${labelStyles || ''} flex gap-2 items-center w-full md:w-auto`}>
+		<label className={`${labelStyles || ''} ${className || ''} flex gap-2 items-center w-full md:w-auto`}>
 			{icon}
 			<input
 				type='text'

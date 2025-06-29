@@ -38,7 +38,7 @@ export function FormCreateTrip({
 
 	return (
 		<>
-			<InputGroupWrapper size='lg'>
+			<InputGroupWrapper size='lg' className='transition focus-within:border-zinc-700'>
 				<Input
 					placeholder='Para onde você vai?'
 					icon={<MapPin size={20} />}

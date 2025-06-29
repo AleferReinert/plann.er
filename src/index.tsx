@@ -81,7 +81,16 @@ export function HomePage() {
 	return (
 		<>
 			<Container className={participantsModal || confirmTripCreationModal ? 'blur' : ''}>
-				<div className='flex flex-col gap-10 my-10 justify-center items-center sm:h-screen bg-squares bg-no-repeat bg-center'>
+				<div className='relative flex flex-col gap-10 my-10 justify-center items-center sm:h-screen'>
+					<img
+						src='/img/background.webp'
+						className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover min-w-fit -z-10'
+						alt=''
+						aria-hidden
+						width='1034'
+						height='640'
+						fetchPriority='high'
+					/>
 					<header className='text-center'>
 						<Logo />
 						<p className='text-lg'>Convide seus amigos e planeje sua próxima viagem!</p>

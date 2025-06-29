@@ -4,7 +4,7 @@ export default {
 	theme: {
 		extend: {
 			backgroundImage: {
-				squares: 'url(/img/background.png)'
+				squares: 'url(/img/background.webp)'
 			},
 			fontFamily: {
 				sans: 'Inter'

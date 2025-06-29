@@ -2,8 +2,9 @@ import { format, setDefaultOptions } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { ArrowRight, Calendar, MapPin, Settings2, UserRoundPlus } from 'lucide-react'
 import { useState } from 'react'
-import { DateRange, DayPicker } from 'react-day-picker'
+import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
+import { useTrip } from '../hooks/useTrip'
 import { Button } from './Button'
 import { Input } from './Input'
 import { InputGroupWrapper } from './InputGroupWrapper'
@@ -11,10 +12,6 @@ import { Modal } from './Modal'
 setDefaultOptions({ locale: ptBR })
 
 interface FormCreateTripProps {
-	date: DateRange | undefined
-	setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>
-	destination: string | undefined
-	setDestination: React.Dispatch<React.SetStateAction<string>>
 	enableParticipantsInputOption?: boolean
 	setParticipantsModal?: React.Dispatch<React.SetStateAction<boolean>>
 	participantEmails?: string[]
@@ -22,24 +19,19 @@ interface FormCreateTripProps {
 }
 
 export function FormCreateTrip({
-	date,
-	setDate,
-	destination,
-	setDestination,
 	enableParticipantsInputOption = false,
 	setParticipantsModal,
 	participantEmails,
 	setConfirmTripCreationModal
 }: FormCreateTripProps) {
+	const { date, destination, setDate, setDestination } = useTrip()
 	const [showFullForm, setShowFullForm] = useState(false)
 	const [daypickerModal, setDaypickerModal] = useState(false)
 	const formatedDate = date?.from && date.to && format(date.from, "dd'/'MM' a '") + format(date.to, "dd'/'MM")
 	const tomorrow = new Date(Date.now() + 86400000)
 
 	function changeData() {
-		const destinationInput = document.getElementById('destination-input')
 		setShowFullForm(false)
-		console.log(destinationInput)
 		setDestination('')
 		setDate(undefined)
 	}
@@ -52,7 +44,7 @@ export function FormCreateTrip({
 					icon={<MapPin size={20} />}
 					labelStyles='flex-1'
 					onChange={e => setDestination(e.target.value)}
-					defaultValue={destination}
+					value={destination}
 					disabled={showFullForm}
 					id='destination-input'
 					required

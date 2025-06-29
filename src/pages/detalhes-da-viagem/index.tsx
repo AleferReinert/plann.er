@@ -1,6 +1,5 @@
 import { Plus } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { DateRange } from 'react-day-picker'
 import { useParams } from 'react-router-dom'
 import { ActivitiesList } from '../../components/ActivitiesList'
 import { Button } from '../../components/Button'
@@ -13,11 +12,6 @@ import { Modal } from '../../components/Modal'
 import { ParticipantsList } from '../../components/ParticipantsList'
 import { api } from '../../lib/axios'
 
-interface TripDetailsPageProps {
-	setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>
-	setDestination: React.Dispatch<React.SetStateAction<string>>
-}
-
 interface Trip {
 	destination: string
 	ends_at: string
@@ -26,13 +20,12 @@ interface Trip {
 	starts_at: string
 }
 
-export function TripDetailsPage({ setDate, setDestination }: TripDetailsPageProps) {
+export function TripDetailsPage() {
 	const [createActivityModal, setCreateActivityModal] = useState(false)
 	const [createLinkModal, setCreateLinkModal] = useState(false)
 	const { tripId } = useParams()
 	const [trip, setTrip] = useState<Trip | undefined>()
-	const finalDate =
-		(trip && new Date(new Date(trip.ends_at).setHours(23, 59)).toString()) || new Date().toString()
+	const finalDate = (trip && new Date(new Date(trip.ends_at).setHours(23, 59)).toString()) || new Date().toString()
 
 	useEffect(() => {
 		api.get(`/trips/${tripId}`).then(response => {
@@ -40,22 +33,11 @@ export function TripDetailsPage({ setDate, setDestination }: TripDetailsPageProp
 		})
 	}, [tripId])
 
-	function stringToDate() {
-		if (trip) {
-			return { from: new Date(trip?.starts_at), to: new Date(trip?.ends_at) }
-		}
-	}
-
 	return (
 		<>
 			<Container className={createActivityModal || createLinkModal ? 'blur' : ''}>
 				<div className='mt-8'>
-					<FormCreateTrip
-						date={stringToDate()}
-						destination={trip?.destination}
-						setDate={setDate}
-						setDestination={setDestination}
-					/>
+					<FormCreateTrip />
 				</div>
 
 				<div className='pt-8 md:flex md:gap-6 lg:gap-16 mb-10'>

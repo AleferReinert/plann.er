@@ -8,7 +8,11 @@ import { Input } from './Input'
 import { InputGroupWrapper } from './InputGroupWrapper'
 import { Loading } from './Loading'
 
-export function FormCreateLink() {
+interface FormCreateLinkProps {
+	setCreateLinkModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export function FormCreateLink({ setCreateLinkModal }: FormCreateLinkProps) {
 	const { tripId } = useParams()
 	const [loading, setLoading] = useState(false)
 
@@ -43,12 +47,13 @@ export function FormCreateLink() {
 			})
 			toast.success('Link cadastrado com sucesso.', { duration: 1500 })
 			setTimeout(() => {
-				window.document.location.reload()
+				// window.document.location.reload()
+				setCreateLinkModal(false)
 			}, 1600)
 		} catch (error) {
 			toast.error('Erro: verifique o formato dos dados.')
 			setLoading(false)
-			console.log(error)
+			console.error(error)
 		}
 	}
 

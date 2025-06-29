@@ -18,9 +18,13 @@ export function FormConfirmTripCreation({
 	setOwnerEmail,
 	createTrip
 }: FormConfirmTripCreationProps) {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		createTrip()
+	}
 	return (
 		<div>
-			<div className='space-y-3'>
+			<form className='space-y-3' onSubmit={handleSubmit}>
 				<InputGroupWrapper theme='dark'>
 					<Input
 						placeholder='Seu nome completo'
@@ -33,6 +37,7 @@ export function FormConfirmTripCreation({
 					/>
 				</InputGroupWrapper>
 				<InputGroupWrapper theme='dark'>
+					{/* todo: validate email */}
 					<Input
 						placeholder='Seu e-mail pessoal'
 						value={ownerEmail}
@@ -42,10 +47,10 @@ export function FormConfirmTripCreation({
 						required
 					/>
 				</InputGroupWrapper>
-				<Button className='w-full' size='md' onClick={createTrip}>
+				<Button className='w-full' size='md' type='submit' disabled={!ownerName || !ownerEmail}>
 					Confirmar criação da viagem
 				</Button>
-			</div>
+			</form>
 		</div>
 	)
 }

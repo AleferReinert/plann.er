@@ -1,19 +1,18 @@
 import { useState } from 'react'
-import { DateRange } from 'react-day-picker'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import { Container } from '../../components/Container'
-import { FormAddParticipants } from '../../components/FormAddParticipants'
-import { FormConfirmTripCreation } from '../../components/FormConfirmTripCreation'
-import { FormCreateTrip } from '../../components/FormCreateTrip'
-import { Loading } from '../../components/Loading'
-import { Logo } from '../../components/Logo'
-import { Modal } from '../../components/Modal'
-import { api } from '../../lib/axios'
+import { Container } from './components/Container'
+import { FormAddParticipants } from './components/FormAddParticipants'
+import { FormConfirmTripCreation } from './components/FormConfirmTripCreation'
+import { FormCreateTrip } from './components/FormCreateTrip'
+import { Loading } from './components/Loading'
+import { Logo } from './components/Logo'
+import { Modal } from './components/Modal'
+import { useTrip } from './hooks/useTrip'
+import { api } from './lib/axios'
 
-export function CreateTripPage() {
-	const [destination, setDestination] = useState('')
-	const [date, setDate] = useState<DateRange | undefined>()
+export function HomePage() {
+	const { date, destination } = useTrip()
 	const [participantEmails, setParticipantEmails] = useState<string[]>([])
 	const [newParticipantEmail, setNewParticipantEmail] = useState('')
 	const [ownerName, setOwnerName] = useState('')
@@ -94,16 +93,12 @@ export function CreateTripPage() {
 							participantEmails={participantEmails}
 							setConfirmTripCreationModal={setConfirmTripCreationModal}
 							setParticipantsModal={setParticipantsModal}
-							date={date}
-							destination={destination}
-							setDate={setDate}
-							setDestination={setDestination}
 						/>
 					</div>
 
 					<p className='text-center text-sm text-zinc-500 [&_a]:text-zinc-300 [&_a]:underline max-w-[480px]'>
-						Ao planejar sua viagem pela plann.er você automaticamente concorda com nossos{' '}
-						<a href=''>termos de uso</a> e <a href=''>políticas de privacidade</a>.
+						Ao planejar sua viagem pela plann.er você automaticamente concorda com nossos <a href=''>termos de uso</a> e{' '}
+						<a href=''>políticas de privacidade</a>.
 					</p>
 				</div>
 			</Container>

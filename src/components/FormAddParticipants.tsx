@@ -1,4 +1,4 @@
-import { AtSign, Plus, X } from 'lucide-react'
+import { Mail, Plus, X } from 'lucide-react'
 import { Button } from './Button'
 import { Input } from './Input'
 import { InputGroupWrapper } from './InputGroupWrapper'
@@ -41,9 +41,10 @@ export function FormAddParticipants({
 			</div>
 			<div className='h-[1px] bg-zinc-800 mb-5'></div>
 			<InputGroupWrapper theme='dark' size='md'>
+				{/* todo: validate email */}
 				<Input
 					placeholder='Digite o e-mail do convidado'
-					icon={<AtSign size={20} />}
+					icon={<Mail size={20} />}
 					labelStyles='flex-1'
 					value={newParticipantEmail}
 					onChange={e => setNewParticipantEmail(e.currentTarget.value)}
@@ -51,7 +52,7 @@ export function FormAddParticipants({
 					autoFocus
 					onKeyDown={addEmailOnEnter}
 				/>
-				<Button onClick={() => addParticipantEmail(newParticipantEmail)} type='button'>
+				<Button onClick={() => addParticipantEmail(newParticipantEmail)} type='button' disabled={!newParticipantEmail}>
 					Convidar
 					<Plus size={20} />
 				</Button>

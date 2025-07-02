@@ -1,7 +1,7 @@
 import { format, setDefaultOptions } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { ArrowRight, Calendar, MapPin, Settings2, UserRoundPlus } from 'lucide-react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
 import { useTrip } from '../hooks/useTrip'
@@ -29,11 +29,15 @@ export function FormCreateTrip({
 	const [daypickerModal, setDaypickerModal] = useState(false)
 	const formatedDate = date?.from && date.to && format(date.from, "dd'/'MM' a '") + format(date.to, "dd'/'MM")
 	const tomorrow = new Date(Date.now() + 86400000)
+	const destinationInputRef = useRef<HTMLInputElement>(null)
 
 	function changeData() {
 		setShowFullForm(false)
 		setDestination('')
 		setDate(undefined)
+		setTimeout(() => {
+			destinationInputRef.current?.focus()
+		}, 0)
 	}
 
 	return (
@@ -48,6 +52,8 @@ export function FormCreateTrip({
 					disabled={showFullForm}
 					id='destination-input'
 					required
+					autoFocus
+					ref={destinationInputRef}
 				/>
 				<Input
 					placeholder='Quando?'

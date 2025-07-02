@@ -1,15 +1,12 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { Container } from './components/Container'
 import { FormAddParticipants } from './components/FormAddParticipants'
 import { FormConfirmTripCreation } from './components/FormConfirmTripCreation'
 import { FormCreateTrip } from './components/FormCreateTrip'
-import { Loading } from './components/Loading'
 import { Logo } from './components/Logo'
 import { Modal } from './components/Modal'
 import { useTrip } from './hooks/useTrip'
-import { api } from './lib/axios'
 
 export function HomePage() {
 	const { date, destination } = useTrip()
@@ -19,8 +16,6 @@ export function HomePage() {
 	const [ownerEmail, setOwnerEmail] = useState('')
 	const [participantsModal, setParticipantsModal] = useState(false)
 	const [confirmTripCreationModal, setConfirmTripCreationModal] = useState(false)
-	const navigate = useNavigate()
-	const [loading, setLoading] = useState(false)
 
 	function addParticipantEmail(newEmail: string) {
 		if (participantEmails.includes(newEmail)) {
@@ -36,46 +31,6 @@ export function HomePage() {
 
 	function deleteParticipantEmail(emailToRemove: string) {
 		setParticipantEmails(participantEmails.filter(participantEmail => participantEmail !== emailToRemove))
-	}
-
-	async function createTrip() {
-		if (!destination) {
-			toast.error('Destino inválido.')
-			return
-		}
-
-		if (!date?.from || !date.to) {
-			toast.error('Data inválida.')
-			return
-		}
-
-		if (participantEmails.length === 0) {
-			toast.error('Nenhum convidado adicionado.')
-			return
-		}
-
-		if (!ownerName) {
-			toast.error('Preencha seu nome.')
-			return
-		}
-
-		if (!ownerEmail) {
-			toast.error('Preencha seu e-mail.')
-			return
-		}
-
-		setLoading(true)
-		const response = await api.post('/trips', {
-			destination,
-			starts_at: date.from,
-			ends_at: date.to,
-			emails_to_invite: participantEmails,
-			owner_name: ownerName,
-			owner_email: ownerEmail
-		})
-
-		const { tripId } = response.data
-		navigate(`/detalhes-da-viagem/${tripId}`)
 	}
 
 	return (
@@ -138,11 +93,12 @@ export function HomePage() {
 						setOwnerName={setOwnerName}
 						ownerEmail={ownerEmail}
 						setOwnerEmail={setOwnerEmail}
-						createTrip={createTrip}
+						destination={destination}
+						date={date}
+						participantEmails={participantEmails}
 					/>
 				</Modal>
 			)}
-			<Loading show={loading} message='Aguarde...' />
 		</>
 	)
 }
